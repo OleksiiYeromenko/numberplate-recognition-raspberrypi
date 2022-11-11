@@ -1,5 +1,5 @@
-# import sys
-# # sys.path.append('./detection/yolov7/')
+import sys
+sys.path.append('./detection/yolov7/')
 
 from camera.camera import PiCamera
 from detection.detector import Detector
@@ -51,13 +51,14 @@ if __name__ == "__main__":
 
 
 
-    camera = PiCamera(img_size=640, fps=36)
+    camera = PiCamera(img_size=640, fps=36, rotate_180=True)
     detector = Detector('detection/models/25ep_best.pt', log_level='INFO')
     ocr = EasyOcr(lang = ['en'], allow_list ='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', min_size=50)
 
     # temp
     show_img = True
     save_img = True
+    display = False
 
 
     # # temp:
@@ -74,7 +75,7 @@ if __name__ == "__main__":
             ocr_result = {'text': None, 'confid': None}
 
 
-        if show_img or save_img:
+        if show_img or save_img or display:
             visualizer = Visualize(im0=detect_result['orig_img'], file_name=detect_result['file_name'],
                                    cropped_img=detect_result['cropped_img'],
                                    bbox=detect_result['bbox'], det_conf=detect_result['det_conf'],
@@ -84,7 +85,6 @@ if __name__ == "__main__":
             if save_img:
                 pass
 
-
             if show_img:
                 visualizer.show()
                 key=cv2.waitKey(1) & 0xFF
@@ -92,7 +92,11 @@ if __name__ == "__main__":
                 if key == ord("q"):
                     break
                 time.sleep(0.003)
-
+                
+            if display:
+                visualizer.display()
+                time.sleep(0.003)
+                
 
 
 # Add inference time in ocr, add fps

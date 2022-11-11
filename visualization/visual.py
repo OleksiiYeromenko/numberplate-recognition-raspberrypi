@@ -1,12 +1,24 @@
 import numpy as np
 import cv2
+import logging
+from logging.handlers import RotatingFileHandler
+
+import sys
+import os
+libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib')
+if os.path.exists(libdir):
+    sys.path.append(libdir)
+import epd2in7
+import time
+from PIL import Image
+
 
 from detection.utils import plot_one_box
 
 
 
 class Visualize():
-    def __init__(self, im0, file_name, cropped_img=None, bbox=None, det_conf=None, ocr_num=None, ocr_conf=None, num_check_response=None, out_img_size=(720,1280), orig_img_size = 640):
+    def __init__(self, im0, file_name, cropped_img=None, bbox=None, det_conf=None, ocr_num=None, ocr_conf=None, num_check_response=None, out_img_size=(720,1280), orig_img_size = 640, log_level='INFO'):
         self.im0 = im0
         self.file_name = file_name
         self.cropped_img = cropped_img
@@ -16,6 +28,18 @@ class Visualize():
         self.ocr_conf = ocr_conf
         self.num_check_response = num_check_response
         self.out_img_size = out_img_size
+        self.num_log_level = getattr(logging, log_level.upper(), 20) ##Translate the log_level input string to one of the accepted values of the logging module, if no 20 - INFO
+        # Set logger
+        log_formatter = logging.Formatter("%(asctime)s %(message)s")
+        logFile = './detection/logs/detection.log'
+        my_handler = RotatingFileHandler(logFile, mode='a', maxBytes=25 * 1024 * 1024,
+                                         backupCount=30, encoding='utf-8', delay=False)
+        my_handler.setFormatter(log_formatter)
+        my_handler.setLevel(self.num_log_level)
+        self.logger = logging.getLogger('root')  # logging.getLogger(__name__)
+        self.logger.setLevel(self.num_log_level)
+        self.logger.addHandler(my_handler)
+        
 
         # Create blank image
         h, w = self.out_img_size
@@ -80,3 +104,37 @@ class Visualize():
     def save_img(self):
         pass
 
+
+    # Didplay Rapberry Pi system information and utilization on e-ink display 176*264.
+    def display(self):
+        # resize image
+        #TBD - take only crop and number part of an image
+        disp_img = self.img[:360, 720:] 
+        
+        Himage = cv2.resize(disp_img, (epd2in7.EPD_HEIGHT, epd2in7.EPD_WIDTH), interpolation=cv2.INTER_AREA)
+        # convert to PIL format
+        Himage = Image.fromarray(Himage)
+        tic = time.perf_counter()
+        epd = epd2in7.EPD() # get the display
+        epd.init()           # initialize the display
+    #     logging.info("Clear...")    # logging.infos to console, not the display, for debugging
+        epd.Clear(0xFF)      # clear the display
+        toc = time.perf_counter()
+        self.logger.info(f"Init, clean display - {toc - tic:0.4f} seconds")
+        print(f"Init, clean display - {toc - tic:0.4f} seconds")
+            
+        tic = time.perf_counter()
+        epd.display(epd.getbuffer(Himage))
+        toc = time.perf_counter()
+        self.logger.info(f"Display image - {toc - tic:0.4f} seconds")
+        print(f"Display image - {toc - tic:0.4f} seconds")
+        epd.sleep() # Power off display
+        
+
+        
+        
+    
+    
+    
+    
+    

@@ -38,4 +38,4 @@ thop  # FLOPs computation
 # pycocotools>=2.0  # COCO mAP
 # roboflow
 
-easyocr
+# easyocr

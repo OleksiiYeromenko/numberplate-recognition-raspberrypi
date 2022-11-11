@@ -39,3 +39,406 @@
 2022-11-10 23:59:37,128 Using CPU. Note: This module is much faster with a GPU.
 2022-11-11 00:00:40,939 Using CPU. Note: This module is much faster with a GPU.
 2022-11-11 00:03:35,929 Using CPU. Note: This module is much faster with a GPU.
+2022-11-11 20:10:35,894 Using CPU. Note: This module is much faster with a GPU.
+2022-11-11 20:20:17,772 Using CPU. Note: This module is much faster with a GPU.
+2022-11-11 20:53:18,861 Using CPU. Note: This module is much faster with a GPU.
+2022-11-11 20:54:26,411 Using CPU. Note: This module is much faster with a GPU.
+2022-11-11 20:59:50,124 Using CPU. Note: This module is much faster with a GPU.
+2022-11-11 21:00:04,390 Init, clean display - 3.1101 seconds
+2022-11-11 21:00:04,390 Init, clean display - 3.1101 seconds
+2022-11-11 21:07:16,752 Using CPU. Note: This module is much faster with a GPU.
+2022-11-11 21:07:31,101 Init, clean display - 3.2294 seconds
+2022-11-11 21:07:31,101 Init, clean display - 3.2294 seconds
+2022-11-11 21:07:33,637 Display image - 2.5354 seconds
+2022-11-11 21:07:33,637 Display image - 2.5354 seconds
+2022-11-11 21:07:38,262 Init, clean display - 1.5264 seconds
+2022-11-11 21:07:38,262 Init, clean display - 1.5264 seconds
+2022-11-11 21:07:38,262 Init, clean display - 1.5264 seconds
+2022-11-11 21:07:38,734 Display image - 0.4711 seconds
+2022-11-11 21:07:38,734 Display image - 0.4711 seconds
+2022-11-11 21:07:38,734 Display image - 0.4711 seconds
+2022-11-11 21:07:44,974 Init, clean display - 3.1169 seconds
+2022-11-11 21:07:44,974 Init, clean display - 3.1169 seconds
+2022-11-11 21:07:44,974 Init, clean display - 3.1169 seconds
+2022-11-11 21:07:44,974 Init, clean display - 3.1169 seconds
+2022-11-11 21:16:43,216 Using CPU. Note: This module is much faster with a GPU.
+2022-11-11 21:16:55,795 Init, clean display - 0.6129 seconds
+2022-11-11 21:16:55,795 Init, clean display - 0.6129 seconds
+2022-11-11 21:16:58,342 Display image - 2.5455 seconds
+2022-11-11 21:16:58,342 Display image - 2.5455 seconds
+2022-11-11 21:17:02,762 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:02,762 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:02,762 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:05,323 Display image - 2.5598 seconds
+2022-11-11 21:17:05,323 Display image - 2.5598 seconds
+2022-11-11 21:17:05,323 Display image - 2.5598 seconds
+2022-11-11 21:17:09,715 Init, clean display - 0.6156 seconds
+2022-11-11 21:17:09,715 Init, clean display - 0.6156 seconds
+2022-11-11 21:17:09,715 Init, clean display - 0.6156 seconds
+2022-11-11 21:17:09,715 Init, clean display - 0.6156 seconds
+2022-11-11 21:17:12,301 Display image - 2.5854 seconds
+2022-11-11 21:17:12,301 Display image - 2.5854 seconds
+2022-11-11 21:17:12,301 Display image - 2.5854 seconds
+2022-11-11 21:17:12,301 Display image - 2.5854 seconds
+2022-11-11 21:17:16,681 Init, clean display - 0.6126 seconds
+2022-11-11 21:17:16,681 Init, clean display - 0.6126 seconds
+2022-11-11 21:17:16,681 Init, clean display - 0.6126 seconds
+2022-11-11 21:17:16,681 Init, clean display - 0.6126 seconds
+2022-11-11 21:17:16,681 Init, clean display - 0.6126 seconds
+2022-11-11 21:17:19,230 Display image - 2.5483 seconds
+2022-11-11 21:17:19,230 Display image - 2.5483 seconds
+2022-11-11 21:17:19,230 Display image - 2.5483 seconds
+2022-11-11 21:17:19,230 Display image - 2.5483 seconds
+2022-11-11 21:17:19,230 Display image - 2.5483 seconds
+2022-11-11 21:17:23,590 Init, clean display - 0.6131 seconds
+2022-11-11 21:17:23,590 Init, clean display - 0.6131 seconds
+2022-11-11 21:17:23,590 Init, clean display - 0.6131 seconds
+2022-11-11 21:17:23,590 Init, clean display - 0.6131 seconds
+2022-11-11 21:17:23,590 Init, clean display - 0.6131 seconds
+2022-11-11 21:17:23,590 Init, clean display - 0.6131 seconds
+2022-11-11 21:17:26,130 Display image - 2.5391 seconds
+2022-11-11 21:17:26,130 Display image - 2.5391 seconds
+2022-11-11 21:17:26,130 Display image - 2.5391 seconds
+2022-11-11 21:17:26,130 Display image - 2.5391 seconds
+2022-11-11 21:17:26,130 Display image - 2.5391 seconds
+2022-11-11 21:17:26,130 Display image - 2.5391 seconds
+2022-11-11 21:17:31,057 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:31,057 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:31,057 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:31,057 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:31,057 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:31,057 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:31,057 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:33,600 Display image - 2.5420 seconds
+2022-11-11 21:17:33,600 Display image - 2.5420 seconds
+2022-11-11 21:17:33,600 Display image - 2.5420 seconds
+2022-11-11 21:17:33,600 Display image - 2.5420 seconds
+2022-11-11 21:17:33,600 Display image - 2.5420 seconds
+2022-11-11 21:17:33,600 Display image - 2.5420 seconds
+2022-11-11 21:17:33,600 Display image - 2.5420 seconds
+2022-11-11 21:17:38,004 Init, clean display - 0.6126 seconds
+2022-11-11 21:17:38,004 Init, clean display - 0.6126 seconds
+2022-11-11 21:17:38,004 Init, clean display - 0.6126 seconds
+2022-11-11 21:17:38,004 Init, clean display - 0.6126 seconds
+2022-11-11 21:17:38,004 Init, clean display - 0.6126 seconds
+2022-11-11 21:17:38,004 Init, clean display - 0.6126 seconds
+2022-11-11 21:17:38,004 Init, clean display - 0.6126 seconds
+2022-11-11 21:17:38,004 Init, clean display - 0.6126 seconds
+2022-11-11 21:17:40,547 Display image - 2.5412 seconds
+2022-11-11 21:17:40,547 Display image - 2.5412 seconds
+2022-11-11 21:17:40,547 Display image - 2.5412 seconds
+2022-11-11 21:17:40,547 Display image - 2.5412 seconds
+2022-11-11 21:17:40,547 Display image - 2.5412 seconds
+2022-11-11 21:17:40,547 Display image - 2.5412 seconds
+2022-11-11 21:17:40,547 Display image - 2.5412 seconds
+2022-11-11 21:17:40,547 Display image - 2.5412 seconds
+2022-11-11 21:17:44,265 Init, clean display - 0.6128 seconds
+2022-11-11 21:17:44,265 Init, clean display - 0.6128 seconds
+2022-11-11 21:17:44,265 Init, clean display - 0.6128 seconds
+2022-11-11 21:17:44,265 Init, clean display - 0.6128 seconds
+2022-11-11 21:17:44,265 Init, clean display - 0.6128 seconds
+2022-11-11 21:17:44,265 Init, clean display - 0.6128 seconds
+2022-11-11 21:17:44,265 Init, clean display - 0.6128 seconds
+2022-11-11 21:17:44,265 Init, clean display - 0.6128 seconds
+2022-11-11 21:17:44,265 Init, clean display - 0.6128 seconds
+2022-11-11 21:17:46,810 Display image - 2.5430 seconds
+2022-11-11 21:17:46,810 Display image - 2.5430 seconds
+2022-11-11 21:17:46,810 Display image - 2.5430 seconds
+2022-11-11 21:17:46,810 Display image - 2.5430 seconds
+2022-11-11 21:17:46,810 Display image - 2.5430 seconds
+2022-11-11 21:17:46,810 Display image - 2.5430 seconds
+2022-11-11 21:17:46,810 Display image - 2.5430 seconds
+2022-11-11 21:17:46,810 Display image - 2.5430 seconds
+2022-11-11 21:17:46,810 Display image - 2.5430 seconds
+2022-11-11 21:17:50,538 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:50,538 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:50,538 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:50,538 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:50,538 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:50,538 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:50,538 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:50,538 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:50,538 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:50,538 Init, clean display - 0.6127 seconds
+2022-11-11 21:17:53,086 Display image - 2.5464 seconds
+2022-11-11 21:17:53,086 Display image - 2.5464 seconds
+2022-11-11 21:17:53,086 Display image - 2.5464 seconds
+2022-11-11 21:17:53,086 Display image - 2.5464 seconds
+2022-11-11 21:17:53,086 Display image - 2.5464 seconds
+2022-11-11 21:17:53,086 Display image - 2.5464 seconds
+2022-11-11 21:17:53,086 Display image - 2.5464 seconds
+2022-11-11 21:17:53,086 Display image - 2.5464 seconds
+2022-11-11 21:17:53,086 Display image - 2.5464 seconds
+2022-11-11 21:17:53,086 Display image - 2.5464 seconds
+2022-11-11 21:17:56,588 Init, clean display - 0.4123 seconds
+2022-11-11 21:17:56,588 Init, clean display - 0.4123 seconds
+2022-11-11 21:17:56,588 Init, clean display - 0.4123 seconds
+2022-11-11 21:17:56,588 Init, clean display - 0.4123 seconds
+2022-11-11 21:17:56,588 Init, clean display - 0.4123 seconds
+2022-11-11 21:17:56,588 Init, clean display - 0.4123 seconds
+2022-11-11 21:17:56,588 Init, clean display - 0.4123 seconds
+2022-11-11 21:17:56,588 Init, clean display - 0.4123 seconds
+2022-11-11 21:17:56,588 Init, clean display - 0.4123 seconds
+2022-11-11 21:17:56,588 Init, clean display - 0.4123 seconds
+2022-11-11 21:17:56,588 Init, clean display - 0.4123 seconds
+2022-11-11 21:26:21,044 Using CPU. Note: This module is much faster with a GPU.
+2022-11-11 21:28:31,168 Using CPU. Note: This module is much faster with a GPU.
+2022-11-11 21:30:01,458 Using CPU. Note: This module is much faster with a GPU.
+2022-11-11 21:30:16,639 Init, clean display - 3.1080 seconds
+2022-11-11 21:30:16,639 Init, clean display - 3.1080 seconds
+2022-11-11 21:30:19,200 Display image - 2.5604 seconds
+2022-11-11 21:30:19,200 Display image - 2.5604 seconds
+2022-11-11 21:30:24,487 Init, clean display - 3.1383 seconds
+2022-11-11 21:30:24,487 Init, clean display - 3.1383 seconds
+2022-11-11 21:30:24,487 Init, clean display - 3.1383 seconds
+2022-11-11 21:30:27,019 Display image - 2.5305 seconds
+2022-11-11 21:30:27,019 Display image - 2.5305 seconds
+2022-11-11 21:30:27,019 Display image - 2.5305 seconds
+2022-11-11 21:30:32,358 Init, clean display - 3.1126 seconds
+2022-11-11 21:30:32,358 Init, clean display - 3.1126 seconds
+2022-11-11 21:30:32,358 Init, clean display - 3.1126 seconds
+2022-11-11 21:30:32,358 Init, clean display - 3.1126 seconds
+2022-11-11 21:30:34,957 Display image - 2.5938 seconds
+2022-11-11 21:30:34,957 Display image - 2.5938 seconds
+2022-11-11 21:30:34,957 Display image - 2.5938 seconds
+2022-11-11 21:30:34,957 Display image - 2.5938 seconds
+2022-11-11 21:30:40,273 Init, clean display - 3.1659 seconds
+2022-11-11 21:30:40,273 Init, clean display - 3.1659 seconds
+2022-11-11 21:30:40,273 Init, clean display - 3.1659 seconds
+2022-11-11 21:30:40,273 Init, clean display - 3.1659 seconds
+2022-11-11 21:30:40,273 Init, clean display - 3.1659 seconds
+2022-11-11 21:30:42,804 Display image - 2.5304 seconds
+2022-11-11 21:30:42,804 Display image - 2.5304 seconds
+2022-11-11 21:30:42,804 Display image - 2.5304 seconds
+2022-11-11 21:30:42,804 Display image - 2.5304 seconds
+2022-11-11 21:30:42,804 Display image - 2.5304 seconds
+2022-11-11 21:30:48,078 Init, clean display - 3.1077 seconds
+2022-11-11 21:30:48,078 Init, clean display - 3.1077 seconds
+2022-11-11 21:30:48,078 Init, clean display - 3.1077 seconds
+2022-11-11 21:30:48,078 Init, clean display - 3.1077 seconds
+2022-11-11 21:30:48,078 Init, clean display - 3.1077 seconds
+2022-11-11 21:30:48,078 Init, clean display - 3.1077 seconds
+2022-11-11 21:30:50,638 Display image - 2.5585 seconds
+2022-11-11 21:30:50,638 Display image - 2.5585 seconds
+2022-11-11 21:30:50,638 Display image - 2.5585 seconds
+2022-11-11 21:30:50,638 Display image - 2.5585 seconds
+2022-11-11 21:30:50,638 Display image - 2.5585 seconds
+2022-11-11 21:30:50,638 Display image - 2.5585 seconds
+2022-11-11 21:30:55,977 Init, clean display - 3.1708 seconds
+2022-11-11 21:30:55,977 Init, clean display - 3.1708 seconds
+2022-11-11 21:30:55,977 Init, clean display - 3.1708 seconds
+2022-11-11 21:30:55,977 Init, clean display - 3.1708 seconds
+2022-11-11 21:30:55,977 Init, clean display - 3.1708 seconds
+2022-11-11 21:30:55,977 Init, clean display - 3.1708 seconds
+2022-11-11 21:30:55,977 Init, clean display - 3.1708 seconds
+2022-11-11 21:30:58,507 Display image - 2.5294 seconds
+2022-11-11 21:30:58,507 Display image - 2.5294 seconds
+2022-11-11 21:30:58,507 Display image - 2.5294 seconds
+2022-11-11 21:30:58,507 Display image - 2.5294 seconds
+2022-11-11 21:30:58,507 Display image - 2.5294 seconds
+2022-11-11 21:30:58,507 Display image - 2.5294 seconds
+2022-11-11 21:30:58,507 Display image - 2.5294 seconds
+2022-11-11 21:31:03,807 Init, clean display - 3.1075 seconds
+2022-11-11 21:31:03,807 Init, clean display - 3.1075 seconds
+2022-11-11 21:31:03,807 Init, clean display - 3.1075 seconds
+2022-11-11 21:31:03,807 Init, clean display - 3.1075 seconds
+2022-11-11 21:31:03,807 Init, clean display - 3.1075 seconds
+2022-11-11 21:31:03,807 Init, clean display - 3.1075 seconds
+2022-11-11 21:31:03,807 Init, clean display - 3.1075 seconds
+2022-11-11 21:31:03,807 Init, clean display - 3.1075 seconds
+2022-11-11 21:31:06,377 Display image - 2.5671 seconds
+2022-11-11 21:31:06,377 Display image - 2.5671 seconds
+2022-11-11 21:31:06,377 Display image - 2.5671 seconds
+2022-11-11 21:31:06,377 Display image - 2.5671 seconds
+2022-11-11 21:31:06,377 Display image - 2.5671 seconds
+2022-11-11 21:31:06,377 Display image - 2.5671 seconds
+2022-11-11 21:31:06,377 Display image - 2.5671 seconds
+2022-11-11 21:31:06,377 Display image - 2.5671 seconds
+2022-11-11 21:32:24,365 Using CPU. Note: This module is much faster with a GPU.
+2022-11-11 21:32:39,086 Init, clean display - 3.1123 seconds
+2022-11-11 21:32:39,086 Init, clean display - 3.1123 seconds
+2022-11-11 21:32:41,612 Display image - 2.5247 seconds
+2022-11-11 21:32:41,612 Display image - 2.5247 seconds
+2022-11-11 21:32:46,117 Init, clean display - 3.1058 seconds
+2022-11-11 21:32:46,117 Init, clean display - 3.1058 seconds
+2022-11-11 21:32:46,117 Init, clean display - 3.1058 seconds
+2022-11-11 21:32:48,642 Display image - 2.5242 seconds
+2022-11-11 21:32:48,642 Display image - 2.5242 seconds
+2022-11-11 21:32:48,642 Display image - 2.5242 seconds
+2022-11-11 21:32:52,889 Init, clean display - 3.1057 seconds
+2022-11-11 21:32:52,889 Init, clean display - 3.1057 seconds
+2022-11-11 21:32:52,889 Init, clean display - 3.1057 seconds
+2022-11-11 21:32:52,889 Init, clean display - 3.1057 seconds
+2022-11-11 21:32:55,416 Display image - 2.5258 seconds
+2022-11-11 21:32:55,416 Display image - 2.5258 seconds
+2022-11-11 21:32:55,416 Display image - 2.5258 seconds
+2022-11-11 21:32:55,416 Display image - 2.5258 seconds
+2022-11-11 21:32:59,727 Init, clean display - 3.1055 seconds
+2022-11-11 21:32:59,727 Init, clean display - 3.1055 seconds
+2022-11-11 21:32:59,727 Init, clean display - 3.1055 seconds
+2022-11-11 21:32:59,727 Init, clean display - 3.1055 seconds
+2022-11-11 21:32:59,727 Init, clean display - 3.1055 seconds
+2022-11-11 21:33:02,249 Display image - 2.5202 seconds
+2022-11-11 21:33:02,249 Display image - 2.5202 seconds
+2022-11-11 21:33:02,249 Display image - 2.5202 seconds
+2022-11-11 21:33:02,249 Display image - 2.5202 seconds
+2022-11-11 21:33:02,249 Display image - 2.5202 seconds
+2022-11-11 21:33:06,516 Init, clean display - 3.1070 seconds
+2022-11-11 21:33:06,516 Init, clean display - 3.1070 seconds
+2022-11-11 21:33:06,516 Init, clean display - 3.1070 seconds
+2022-11-11 21:33:06,516 Init, clean display - 3.1070 seconds
+2022-11-11 21:33:06,516 Init, clean display - 3.1070 seconds
+2022-11-11 21:33:06,516 Init, clean display - 3.1070 seconds
+2022-11-11 21:33:09,047 Display image - 2.5303 seconds
+2022-11-11 21:33:09,047 Display image - 2.5303 seconds
+2022-11-11 21:33:09,047 Display image - 2.5303 seconds
+2022-11-11 21:33:09,047 Display image - 2.5303 seconds
+2022-11-11 21:33:09,047 Display image - 2.5303 seconds
+2022-11-11 21:33:09,047 Display image - 2.5303 seconds
+2022-11-11 21:33:13,336 Init, clean display - 3.1068 seconds
+2022-11-11 21:33:13,336 Init, clean display - 3.1068 seconds
+2022-11-11 21:33:13,336 Init, clean display - 3.1068 seconds
+2022-11-11 21:33:13,336 Init, clean display - 3.1068 seconds
+2022-11-11 21:33:13,336 Init, clean display - 3.1068 seconds
+2022-11-11 21:33:13,336 Init, clean display - 3.1068 seconds
+2022-11-11 21:33:13,336 Init, clean display - 3.1068 seconds
+2022-11-11 21:33:15,863 Display image - 2.5260 seconds
+2022-11-11 21:33:15,863 Display image - 2.5260 seconds
+2022-11-11 21:33:15,863 Display image - 2.5260 seconds
+2022-11-11 21:33:15,863 Display image - 2.5260 seconds
+2022-11-11 21:33:15,863 Display image - 2.5260 seconds
+2022-11-11 21:33:15,863 Display image - 2.5260 seconds
+2022-11-11 21:33:15,863 Display image - 2.5260 seconds
+2022-11-11 21:33:20,159 Init, clean display - 3.1348 seconds
+2022-11-11 21:33:20,159 Init, clean display - 3.1348 seconds
+2022-11-11 21:33:20,159 Init, clean display - 3.1348 seconds
+2022-11-11 21:33:20,159 Init, clean display - 3.1348 seconds
+2022-11-11 21:33:20,159 Init, clean display - 3.1348 seconds
+2022-11-11 21:33:20,159 Init, clean display - 3.1348 seconds
+2022-11-11 21:33:20,159 Init, clean display - 3.1348 seconds
+2022-11-11 21:33:20,159 Init, clean display - 3.1348 seconds
+2022-11-11 21:33:22,689 Display image - 2.5289 seconds
+2022-11-11 21:33:22,689 Display image - 2.5289 seconds
+2022-11-11 21:33:22,689 Display image - 2.5289 seconds
+2022-11-11 21:33:22,689 Display image - 2.5289 seconds
+2022-11-11 21:33:22,689 Display image - 2.5289 seconds
+2022-11-11 21:33:22,689 Display image - 2.5289 seconds
+2022-11-11 21:33:22,689 Display image - 2.5289 seconds
+2022-11-11 21:33:22,689 Display image - 2.5289 seconds
+2022-11-11 21:33:26,954 Init, clean display - 3.1125 seconds
+2022-11-11 21:33:26,954 Init, clean display - 3.1125 seconds
+2022-11-11 21:33:26,954 Init, clean display - 3.1125 seconds
+2022-11-11 21:33:26,954 Init, clean display - 3.1125 seconds
+2022-11-11 21:33:26,954 Init, clean display - 3.1125 seconds
+2022-11-11 21:33:26,954 Init, clean display - 3.1125 seconds
+2022-11-11 21:33:26,954 Init, clean display - 3.1125 seconds
+2022-11-11 21:33:26,954 Init, clean display - 3.1125 seconds
+2022-11-11 21:33:26,954 Init, clean display - 3.1125 seconds
+2022-11-11 21:33:29,486 Display image - 2.5309 seconds
+2022-11-11 21:33:29,486 Display image - 2.5309 seconds
+2022-11-11 21:33:29,486 Display image - 2.5309 seconds
+2022-11-11 21:33:29,486 Display image - 2.5309 seconds
+2022-11-11 21:33:29,486 Display image - 2.5309 seconds
+2022-11-11 21:33:29,486 Display image - 2.5309 seconds
+2022-11-11 21:33:29,486 Display image - 2.5309 seconds
+2022-11-11 21:33:29,486 Display image - 2.5309 seconds
+2022-11-11 21:33:29,486 Display image - 2.5309 seconds
+2022-11-11 21:33:33,825 Init, clean display - 3.1725 seconds
+2022-11-11 21:33:33,825 Init, clean display - 3.1725 seconds
+2022-11-11 21:33:33,825 Init, clean display - 3.1725 seconds
+2022-11-11 21:33:33,825 Init, clean display - 3.1725 seconds
+2022-11-11 21:33:33,825 Init, clean display - 3.1725 seconds
+2022-11-11 21:33:33,825 Init, clean display - 3.1725 seconds
+2022-11-11 21:33:33,825 Init, clean display - 3.1725 seconds
+2022-11-11 21:33:33,825 Init, clean display - 3.1725 seconds
+2022-11-11 21:33:33,825 Init, clean display - 3.1725 seconds
+2022-11-11 21:33:33,825 Init, clean display - 3.1725 seconds
+2022-11-11 21:33:36,353 Display image - 2.5265 seconds
+2022-11-11 21:33:36,353 Display image - 2.5265 seconds
+2022-11-11 21:33:36,353 Display image - 2.5265 seconds
+2022-11-11 21:33:36,353 Display image - 2.5265 seconds
+2022-11-11 21:33:36,353 Display image - 2.5265 seconds
+2022-11-11 21:33:36,353 Display image - 2.5265 seconds
+2022-11-11 21:33:36,353 Display image - 2.5265 seconds
+2022-11-11 21:33:36,353 Display image - 2.5265 seconds
+2022-11-11 21:33:36,353 Display image - 2.5265 seconds
+2022-11-11 21:33:36,353 Display image - 2.5265 seconds
+2022-11-11 21:33:42,909 Init, clean display - 3.1646 seconds
+2022-11-11 21:33:42,909 Init, clean display - 3.1646 seconds
+2022-11-11 21:33:42,909 Init, clean display - 3.1646 seconds
+2022-11-11 21:33:42,909 Init, clean display - 3.1646 seconds
+2022-11-11 21:33:42,909 Init, clean display - 3.1646 seconds
+2022-11-11 21:33:42,909 Init, clean display - 3.1646 seconds
+2022-11-11 21:33:42,909 Init, clean display - 3.1646 seconds
+2022-11-11 21:33:42,909 Init, clean display - 3.1646 seconds
+2022-11-11 21:33:42,909 Init, clean display - 3.1646 seconds
+2022-11-11 21:33:42,909 Init, clean display - 3.1646 seconds
+2022-11-11 21:33:42,909 Init, clean display - 3.1646 seconds
+2022-11-11 21:33:45,035 Display image - 2.1240 seconds
+2022-11-11 21:33:45,035 Display image - 2.1240 seconds
+2022-11-11 21:33:45,035 Display image - 2.1240 seconds
+2022-11-11 21:33:45,035 Display image - 2.1240 seconds
+2022-11-11 21:33:45,035 Display image - 2.1240 seconds
+2022-11-11 21:33:45,035 Display image - 2.1240 seconds
+2022-11-11 21:33:45,035 Display image - 2.1240 seconds
+2022-11-11 21:33:45,035 Display image - 2.1240 seconds
+2022-11-11 21:33:45,035 Display image - 2.1240 seconds
+2022-11-11 21:33:45,035 Display image - 2.1240 seconds
+2022-11-11 21:33:45,035 Display image - 2.1240 seconds
+2022-11-11 22:24:20,128 Using CPU. Note: This module is much faster with a GPU.
+2022-11-11 22:24:36,052 Init, clean display - 3.1116 seconds
+2022-11-11 22:24:36,052 Init, clean display - 3.1116 seconds
+2022-11-11 22:24:38,578 Display image - 2.5256 seconds
+2022-11-11 22:24:38,578 Display image - 2.5256 seconds
+2022-11-11 22:24:43,844 Init, clean display - 3.1091 seconds
+2022-11-11 22:24:43,844 Init, clean display - 3.1091 seconds
+2022-11-11 22:24:43,844 Init, clean display - 3.1091 seconds
+2022-11-11 22:24:46,376 Display image - 2.5313 seconds
+2022-11-11 22:24:46,376 Display image - 2.5313 seconds
+2022-11-11 22:24:46,376 Display image - 2.5313 seconds
+2022-11-11 22:24:51,730 Init, clean display - 3.2400 seconds
+2022-11-11 22:24:51,730 Init, clean display - 3.2400 seconds
+2022-11-11 22:24:51,730 Init, clean display - 3.2400 seconds
+2022-11-11 22:24:51,730 Init, clean display - 3.2400 seconds
+2022-11-11 22:24:54,396 Display image - 2.6636 seconds
+2022-11-11 22:24:54,396 Display image - 2.6636 seconds
+2022-11-11 22:24:54,396 Display image - 2.6636 seconds
+2022-11-11 22:24:54,396 Display image - 2.6636 seconds
+2022-11-11 22:24:59,661 Init, clean display - 3.1666 seconds
+2022-11-11 22:24:59,661 Init, clean display - 3.1666 seconds
+2022-11-11 22:24:59,661 Init, clean display - 3.1666 seconds
+2022-11-11 22:24:59,661 Init, clean display - 3.1666 seconds
+2022-11-11 22:24:59,661 Init, clean display - 3.1666 seconds
+2022-11-11 22:25:02,187 Display image - 2.5254 seconds
+2022-11-11 22:25:02,187 Display image - 2.5254 seconds
+2022-11-11 22:25:02,187 Display image - 2.5254 seconds
+2022-11-11 22:25:02,187 Display image - 2.5254 seconds
+2022-11-11 22:25:02,187 Display image - 2.5254 seconds
+2022-11-11 22:25:07,416 Init, clean display - 3.1118 seconds
+2022-11-11 22:25:07,416 Init, clean display - 3.1118 seconds
+2022-11-11 22:25:07,416 Init, clean display - 3.1118 seconds
+2022-11-11 22:25:07,416 Init, clean display - 3.1118 seconds
+2022-11-11 22:25:07,416 Init, clean display - 3.1118 seconds
+2022-11-11 22:25:07,416 Init, clean display - 3.1118 seconds
+2022-11-11 22:25:10,004 Display image - 2.5858 seconds
+2022-11-11 22:25:10,004 Display image - 2.5858 seconds
+2022-11-11 22:25:10,004 Display image - 2.5858 seconds
+2022-11-11 22:25:10,004 Display image - 2.5858 seconds
+2022-11-11 22:25:10,004 Display image - 2.5858 seconds
+2022-11-11 22:25:10,004 Display image - 2.5858 seconds
+2022-11-11 22:25:13,271 Init, clean display - 0.8032 seconds
+2022-11-11 22:25:13,271 Init, clean display - 0.8032 seconds
+2022-11-11 22:25:13,271 Init, clean display - 0.8032 seconds
+2022-11-11 22:25:13,271 Init, clean display - 0.8032 seconds
+2022-11-11 22:25:13,271 Init, clean display - 0.8032 seconds
+2022-11-11 22:25:13,271 Init, clean display - 0.8032 seconds
+2022-11-11 22:25:13,271 Init, clean display - 0.8032 seconds
+2022-11-11 22:25:13,593 Display image - 0.3207 seconds
+2022-11-11 22:25:13,593 Display image - 0.3207 seconds
+2022-11-11 22:25:13,593 Display image - 0.3207 seconds
+2022-11-11 22:25:13,593 Display image - 0.3207 seconds
+2022-11-11 22:25:13,593 Display image - 0.3207 seconds
+2022-11-11 22:25:13,593 Display image - 0.3207 seconds
+2022-11-11 22:25:13,593 Display image - 0.3207 seconds
+2022-11-11 22:27:37,473 Using CPU. Note: This module is much faster with a GPU.
+2022-11-11 22:28:35,829 Using CPU. Note: This module is much faster with a GPU.
