@@ -169,7 +169,7 @@ class LoadImage:  # for inference
             self.name = Path(p).name
         else:
             self.file = None
-            self.name = datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:-4] + ".jpg"
+            self.name = datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:-3] + ".jpg"
 
     def preprocess(self):
         # Read image if needed

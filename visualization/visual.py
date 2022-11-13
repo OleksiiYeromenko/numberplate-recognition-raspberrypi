@@ -3,12 +3,15 @@ import cv2
 import logging
 from logging.handlers import RotatingFileHandler
 
+
 import sys
 import os
 libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib')
 if os.path.exists(libdir):
     sys.path.append(libdir)
-import epd2in7
+# import epd2in7
+
+from pathlib import Path
 import time
 from PIL import Image
 
@@ -18,7 +21,7 @@ from detection.utils import plot_one_box
 
 
 class Visualize():
-    def __init__(self, im0, file_name, cropped_img=None, bbox=None, det_conf=None, ocr_num=None, ocr_conf=None, num_check_response=None, out_img_size=(720,1280), orig_img_size = 640, log_level='INFO'):
+    def __init__(self, im0, file_name, cropped_img=None, bbox=None, det_conf=None, ocr_num=None, ocr_conf=None, num_check_response=None, out_img_size=(720,1280), orig_img_size = 640, log_level='INFO',log_dir = './logs/', save_jpg_qual = 65, log_img_qnt_limit = 10800):
         self.im0 = im0
         self.file_name = file_name
         self.cropped_img = cropped_img
@@ -29,9 +32,14 @@ class Visualize():
         self.num_check_response = num_check_response
         self.out_img_size = out_img_size
         self.num_log_level = getattr(logging, log_level.upper(), 20) ##Translate the log_level input string to one of the accepted values of the logging module, if no 20 - INFO
+        self.save_jpg_qual = save_jpg_qual
+        self.log_dir = log_dir
+        self.imgs_log_dir = self.log_dir + 'imgs/'
+        self.log_img_qnt_limit = log_img_qnt_limit
+
         # Set logger
         log_formatter = logging.Formatter("%(asctime)s %(message)s")
-        logFile = './detection/logs/detection.log'
+        logFile = self.log_dir + 'detection.log'
         my_handler = RotatingFileHandler(logFile, mode='a', maxBytes=25 * 1024 * 1024,
                                          backupCount=30, encoding='utf-8', delay=False)
         my_handler.setFormatter(log_formatter)
@@ -39,7 +47,6 @@ class Visualize():
         self.logger = logging.getLogger('root')  # logging.getLogger(__name__)
         self.logger.setLevel(self.num_log_level)
         self.logger.addHandler(my_handler)
-        
 
         # Create blank image
         h, w = self.out_img_size
@@ -74,6 +81,8 @@ class Visualize():
             crop_h_offset = int(h/7)
             crop_w_offset = im0_w + im0_offset + int((w - (im0_w + im0_offset) - crop_w) / 2)
             self.img[crop_h_offset:crop_h + crop_h_offset, crop_w_offset:crop_w + crop_w_offset] = self.cropped_img
+            # Add `_det` to filename
+            self.file_name = Path(self.file_name).stem + "_det" + Path(self.file_name).suffix
 
 
         if self.ocr_num is not None:
@@ -95,17 +104,22 @@ class Visualize():
     def show(self):
         # Show the image
         cv2.imshow('image', self.img)
-        # Wait for a key
-        # cv2.waitKey(0)
-        # # Distroy all the window open
-        # cv2.destroyAllWindows()
 
 
-    def save_img(self):
-        pass
+
+    def save(self):
+        # Remove oldest file if reach quantity limit
+        if self.get_dir_file_quantity(self.imgs_log_dir) > self.log_img_qnt_limit:
+            oldest_file = sorted([self.imgs_log_dir+f for f in os.listdir(self.imgs_log_dir)])[
+                0]  # , key=os.path.getctime
+            os.remove(oldest_file)
+
+        # Write compressed jpeg with results
+        cv2.imwrite(f"{self.imgs_log_dir}{self.file_name}", self.img, [int(cv2.IMWRITE_JPEG_QUALITY), self.save_jpg_qual])
 
 
-    # Didplay Rapberry Pi system information and utilization on e-ink display 176*264.
+
+    # Display img on e-ink display 176*264.
     def display(self):
         # resize image
         #TBD - take only crop and number part of an image
@@ -130,8 +144,11 @@ class Visualize():
         print(f"Display image - {toc - tic:0.4f} seconds")
         epd.sleep() # Power off display
         
+    @staticmethod
+    def get_dir_file_quantity(dir_path):
+        list_of_files = os.listdir(dir_path)
+        return len(list_of_files)
 
-        
         
     
     

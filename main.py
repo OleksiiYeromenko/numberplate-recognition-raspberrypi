@@ -14,54 +14,38 @@ import cv2
 
 
 
-
-
-# camera = CAMERA()
-# detect = DETECTOR()
-# ocr = OCR()
-# prnt = PRINT()
-#
-# while true:
-#     img= camera.generate()
-#     bbox = detect(img)
-#     number = ocr(bbox)
-# 	if show_result:
-# 		prnt (img, bbox, number)
-#
-# +Unit tests - each method classa
+# +Unit tests - each method
 # +ssh script to copy from git, install requirements, run tests
 # +logging to file
-#
-#
-#
-#
+
+
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--weights', nargs='+', type=str, default='yolov7.pt', help='model.pt path(s)')
     parser.add_argument('--source', type=str, default='inference/images', help='source')  # file/folder, 0 for webcam
     parser.add_argument('--img-size', type=int, default=640, help='inference size (pixels)')
-    parser.add_argument('--conf-thres', type=float, default=0.25, help='object confidence threshold')
+    parser.add_argument('--conf-thres', type=float, default=0.25, help='object det confidence threshold')
     parser.add_argument('--log-level', type=str, default='INFO', help='logging level')
     parser.add_argument('--show-img', action='store_true', help='display results')
     parser.add_argument('--save-img', action='store_true', help='save imgs to *.jpg')
     opt = parser.parse_args()
     opt = vars(opt)
-    # print(opt)
+    print(opt)
+
+    # TBD
+    show_img = True
+    save_img = True
+    display_img = False
 
 
 
-    camera = PiCamera(img_size=640, fps=36, rotate_180=True)
+    camera = PiCamera(img_size=640, fps=10)   # ,rotate_180=True
     detector = Detector('detection/models/25ep_best.pt', log_level='INFO')
     ocr = EasyOcr(lang = ['en'], allow_list ='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', min_size=50)
 
-    # temp
-    show_img = True
-    save_img = True
-    display = False
-
-
-    # # temp:
+    # # test:
     # img = cv2.imread('data/test/test1.jpg')
 
     while True:
@@ -80,23 +64,23 @@ if __name__ == "__main__":
                                    cropped_img=detect_result['cropped_img'],
                                    bbox=detect_result['bbox'], det_conf=detect_result['det_conf'],
                                    ocr_num=ocr_result['text'], ocr_conf=ocr_result['confid'], num_check_response=None,
-                                   out_img_size=(720, 1280))
-
-            if save_img:
-                pass
+                                   out_img_size=(720, 1280), orig_img_size = 640, log_level='INFO',log_dir = './logs/',save_jpg_qual = 65, log_img_qnt_limit = 10800)
 
             if show_img:
                 visualizer.show()
-                key=cv2.waitKey(1) & 0xFF
-                # Press 'q' key to break the loop
+                # Press 'q' key to break the loop:
+                key = cv2.waitKey(1) & 0xFF
                 if key == ord("q"):
-                    break
-                time.sleep(0.003)
-                
-            if display:
+                    cv2.destroyAllWindows()
+                    show_img = False
+                    continue
+
+            if save_img:
+                visualizer.save()
+
+            if display_img:
                 visualizer.display()
-                time.sleep(0.003)
-                
+
 
 
 # Add inference time in ocr, add fps

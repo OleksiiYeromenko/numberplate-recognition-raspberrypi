@@ -15,7 +15,7 @@ class Detector():
      Input: path to a file or cv2 BGR format
      .run(inp_image, conf_thres) returns: Filename, Cropped image; Original image, Bounding box"""
 
-    def __init__(self, model_weights, img_size=640, device='cpu', half=False, trace=True, log_level='INFO'):
+    def __init__(self, model_weights, img_size=640, device='cpu', half=False, trace=True, log_level='INFO', log_dir = './logs/'):
         # Initialize
         self.model_weights = model_weights
         self.img_size = img_size
@@ -23,6 +23,7 @@ class Detector():
         self.half = half  # half = device.type != 'cpu'  # half precision only supported on CUDA
         self.trace = trace  # Convert model to Traced-model
         self.num_log_level = getattr(logging, log_level.upper(), 20) ##Translate the log_level input string to one of the accepted values of the logging module, if no 20 - INFO
+        self.log_dir = log_dir
         # Add path to yolo model as whenever load('weights.pt') is called, pytorch looks for model config in path enviornment variable (models/yolo)
         yolo_folder_dir = str(Path(__file__).parent.absolute()) +"\yolov7" #  models folder path
         sys.path.insert(0, yolo_folder_dir)
@@ -48,7 +49,7 @@ class Detector():
 
 
         log_formatter = logging.Formatter("%(asctime)s %(message)s")
-        logFile = './detection/logs/detection.log'
+        logFile = self.log_dir + 'detection.log'
         my_handler = RotatingFileHandler(logFile, mode='a', maxBytes=25 * 1024 * 1024,
                                          backupCount=30, encoding='utf-8', delay=False)
         my_handler.setFormatter(log_formatter)
