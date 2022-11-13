@@ -51,10 +51,10 @@ class Detector():
         log_formatter = logging.Formatter("%(asctime)s %(message)s")
         logFile = self.log_dir + 'detection.log'
         my_handler = RotatingFileHandler(logFile, mode='a', maxBytes=25 * 1024 * 1024,
-                                         backupCount=30, encoding='utf-8', delay=False)
+                                         backupCount=10, encoding='utf-8', delay=False)
         my_handler.setFormatter(log_formatter)
         my_handler.setLevel(self.num_log_level)
-        self.logger = logging.getLogger('root')  # logging.getLogger(__name__)
+        self.logger = logging.getLogger(__name__)  # logging.getLogger(__name__)  .getLogger('root')
         self.logger.setLevel(self.num_log_level)
         self.logger.addHandler(my_handler)
 
@@ -120,7 +120,7 @@ class Detector():
             cropped_img = cropped_img[:, :, ::-1] # # BGR to RGB
             det_conf = max_det[4:5]
 
-        print(f'Detection total: ({time.time() - t0:.3f}s)')
+        print(f'Detection total time: {time.time() - t0:.3f}s')
         return {'file_name': self.file_name, 'orig_img': self.im0, 'cropped_img': cropped_img, 'bbox': bbox,
                 'det_conf': det_conf}
 
