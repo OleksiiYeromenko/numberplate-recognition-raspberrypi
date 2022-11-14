@@ -105,15 +105,14 @@ if __name__ == "__main__":
     opt = parser.parse_args()
 
     # Dev testing
-    opt.show_img = True
-    # opt.display_img = True
+#     opt.show_img = True
+    opt.display_img = True
     opt.cam_rotate_180 = True
 
-    dev_test(img_source='data/test/test1.jpg',weights=opt.weights, img_size=opt.img_size, det_conf_thres=opt.det_conf_thres, log_level=opt.log_level, cam_rotate_180 = opt.cam_rotate_180,
-         show_img=opt.show_img, save_img=opt.save_img, display_img=opt.display_img)
+#     dev_test(img_source='data/test/test1.jpg',weights=opt.weights, img_size=opt.img_size, det_conf_thres=opt.det_conf_thres, log_level=opt.log_level, cam_rotate_180 = opt.cam_rotate_180,
+#          show_img=opt.show_img, save_img=opt.save_img, display_img=opt.display_img)
 
     #
-    # main(weights=opt.weights, img_size=opt.img_size, det_conf_thres=opt.det_conf_thres, log_level=opt.log_level,
-    #      show_img=opt.show_img, save_img=opt.save_img, display_img=opt.display_img)
+    main(weights=opt.weights, img_size=opt.img_size, det_conf_thres=opt.det_conf_thres, log_level=opt.log_level, cam_rotate_180 = opt.cam_rotate_180, show_img=opt.show_img, save_img=opt.save_img, display_img=opt.display_img)
 
 

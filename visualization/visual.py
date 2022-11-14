@@ -51,7 +51,7 @@ class Visualize():
         im0_h, im0_w = self.im0.shape[:2]
 
         # Add original full image
-        im0_offset = 5
+        im0_offset = 0
         self.img[im0_offset:im0_h + im0_offset, im0_offset:im0_w + im0_offset] = self.im0
 
         # Add cropped image with detected number bbox
@@ -120,23 +120,29 @@ class Visualize():
     # Display img on e-ink display 176*264.
     def display(self):
         # Create blank image
-        disp_img = np.zeros((epd2in7.EPD_HEIGHT, epd2in7.EPD_WIDTH, 3), np.uint8)
+        disp_img = np.zeros((epd2in7.EPD_WIDTH, epd2in7.EPD_HEIGHT,3), np.uint8)
         disp_img[:, :] = (255, 255, 255)
-        # Add cropped number
-        crop_resized = cv2.resize(self.cropped_img, (epd2in7.EPD_WIDTH-4,80), interpolation=cv2.INTER_AREA)
-        crop_resized_h, crop_resized_w = crop_resized.shape[:2]
-        disp_img[2:crop_resized_h+2, 2:crop_resized_w+2] = crop_resized
-        # Add recognized label
-        label = f"{self.ocr_num} ({self.ocr_conf})"
-        t_thickn = 2  # text font thickness in px
-        font = cv2.FONT_HERSHEY_SIMPLEX  # font
-        fontScale = 0.8
-        text_size = cv2.getTextSize(label, font, fontScale=fontScale, thickness=t_thickn)[0]
-        ocr_w_x1 = int(epd2in7.EPD_WIDTH / 2 - text_size[0] / 2)
-        ocr_h_y1 = int(crop_resized_h/2 +2 + epd2in7.EPD_HEIGHT/2)
-        # Plot text on img
-        cv2.putText(disp_img, label, (ocr_w_x1, ocr_h_y1), font, fontScale, color=(0, 0, 0), thickness=t_thickn, lineType=cv2.LINE_AA)
+        
+        if self.cropped_img is not None:
+            # Add cropped number
+            crop_resized = cv2.resize(self.cropped_img, (epd2in7.EPD_HEIGHT-4, 85), interpolation=cv2.INTER_AREA)
+            crop_resized_h, crop_resized_w = crop_resized.shape[:2]
+            crop_w_x1 = int(epd2in7.EPD_HEIGHT/2 - crop_resized_w/2)
+            disp_img[2:crop_resized_h+2, crop_w_x1:crop_resized_w+crop_w_x1] = crop_resized
+        
+        if self.ocr_num is not None:
+            # Add recognized label
+            label = f"{self.ocr_num}({self.ocr_conf})"
+            t_thickn = 2  # text font thickness in px
+            font = cv2.FONT_HERSHEY_SIMPLEX  # font
+            fontScale = 0.8
+            text_size = cv2.getTextSize(label, font, fontScale=fontScale, thickness=t_thickn)[0]
+            ocr_w_x1 = int(epd2in7.EPD_HEIGHT / 2 - text_size[0] / 2)
+            ocr_h_y1 = int(crop_resized_h/2 +2 + epd2in7.EPD_WIDTH/2)
+            # Plot text on img
+            cv2.putText(disp_img, label, (ocr_w_x1, ocr_h_y1), font, fontScale, color=(0, 0, 0), thickness=t_thickn, lineType=cv2.LINE_AA)
         Himage = cv2.resize(disp_img, (epd2in7.EPD_HEIGHT, epd2in7.EPD_WIDTH), interpolation=cv2.INTER_AREA)
+        print(f"###Himage:{Himage.shape}")
         # convert to PIL format
         Himage = Image.fromarray(Himage)
         tic = time.perf_counter()
