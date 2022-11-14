@@ -6,15 +6,15 @@ import os
 libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib')
 if os.path.exists(libdir):
     sys.path.append(libdir)
-# import epd2in7
+try:
+    import epd2in7
+except:
+    print("Cannot find sysfs_software_spi.so - no Serial Peripheral Interface.")
 
 from pathlib import Path
 import time
 from PIL import Image
-
-
 from visualization.utils import plot_one_box
-
 
 
 class Visualize():
@@ -91,7 +91,6 @@ class Visualize():
         else:
             label = "-=Prohibited!=-"
             fontColor = (0,0,255)
-
         t_thickn = 2  # text font thickness in px
         font = cv2.FONT_HERSHEY_SIMPLEX  # font
         fontScale = 1.05
@@ -99,7 +98,7 @@ class Visualize():
         text_size = cv2.getTextSize(label, font, fontScale=fontScale, thickness=t_thickn)[0]
         w_center = int((im0_w + im0_offset + w) / 2)
         response_w_x1 = int(w_center - text_size[0] / 2)
-        response_h_y1 = int(h*3/5) #TBD
+        response_h_y1 = int(h*4/7) #TBD
         org = (response_w_x1, response_h_y1)  # position
         # Plot text on img
         cv2.putText(self.img, label, org, font, fontScale, color=fontColor, thickness=t_thickn, lineType=cv2.LINE_AA)
@@ -120,10 +119,23 @@ class Visualize():
 
     # Display img on e-ink display 176*264.
     def display(self):
-        # resize image
-        #TBD - take only crop and number part of an image
-        disp_img = self.img[:360, 720:] 
-        
+        # Create blank image
+        disp_img = np.zeros((epd2in7.EPD_HEIGHT, epd2in7.EPD_WIDTH, 3), np.uint8)
+        disp_img[:, :] = (255, 255, 255)
+        # Add cropped number
+        crop_resized = cv2.resize(self.cropped_img, (epd2in7.EPD_WIDTH-4,80), interpolation=cv2.INTER_AREA)
+        crop_resized_h, crop_resized_w = crop_resized.shape[:2]
+        disp_img[2:crop_resized_h+2, 2:crop_resized_w+2] = crop_resized
+        # Add recognized label
+        label = f"{self.ocr_num} ({self.ocr_conf})"
+        t_thickn = 2  # text font thickness in px
+        font = cv2.FONT_HERSHEY_SIMPLEX  # font
+        fontScale = 0.8
+        text_size = cv2.getTextSize(label, font, fontScale=fontScale, thickness=t_thickn)[0]
+        ocr_w_x1 = int(epd2in7.EPD_WIDTH / 2 - text_size[0] / 2)
+        ocr_h_y1 = int(crop_resized_h/2 +2 + epd2in7.EPD_HEIGHT/2)
+        # Plot text on img
+        cv2.putText(disp_img, label, (ocr_w_x1, ocr_h_y1), font, fontScale, color=(0, 0, 0), thickness=t_thickn, lineType=cv2.LINE_AA)
         Himage = cv2.resize(disp_img, (epd2in7.EPD_HEIGHT, epd2in7.EPD_WIDTH), interpolation=cv2.INTER_AREA)
         # convert to PIL format
         Himage = Image.fromarray(Himage)
