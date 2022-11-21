@@ -14,7 +14,7 @@ except:
 from pathlib import Path
 import time
 from PIL import Image
-from visualization.utils import plot_one_box
+from visualization.utils import plot_one_box, check_imshow
 
 
 class Visualize():

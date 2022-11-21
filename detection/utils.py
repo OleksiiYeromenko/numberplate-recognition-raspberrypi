@@ -9,7 +9,6 @@ import cv2
 import math
 import torch.nn as nn
 
-
 import subprocess
 import platform
 
@@ -134,20 +133,6 @@ class TracedModel(nn.Module):
         return out
 
 
-def check_imshow():
-    # Check if environment supports image displays
-    try:
-        assert not Path('/workspace').exists(), 'cv2.imshow() is disabled in Docker environments'
-        cv2.imshow('test', np.zeros((1, 1, 3)))
-        cv2.waitKey(1)
-        cv2.destroyAllWindows()
-        cv2.waitKey(1)
-        return True
-    except Exception as e:
-        print(f'WARNING: Environment does not support cv2.imshow() or PIL Image.show() image displays\n{e}')
-        return False
-
-
 # Set Dataloader
 class LoadImage:  # for inference
     """Load images. Input - path to a file or cv2 BGR format"""
@@ -180,7 +165,7 @@ class LoadImage:  # for inference
         img = letterbox(self.inp_img, self.img_size, stride=self.stride)[0]
 
         # Convert
-        img = img[:, :, ::-1].transpose(2, 0, 1)  # BGR to RGB, to 3x416x416
+        img = img[:, :, ::-1].transpose(2, 0, 1)  # `BGR` to RGB, to 3x416x416
         img = np.ascontiguousarray(img)
 
         # Preprocess
@@ -356,7 +341,7 @@ def scale_coords(img1_shape, coords, img0_shape, ratio_pad=None):
 
 
 def save_crop(xyxy, im, BGR=False):
-    # Save image crop as {file} with crop size multiple {gain} and {pad} pixels. Save and/or return crop
+    # Save image crop
     xyxy = xyxy.view(-1, 4).long()  # torch.tensor(xyxy)
     im = np.array(im)
     clip_coords(xyxy, im.shape)

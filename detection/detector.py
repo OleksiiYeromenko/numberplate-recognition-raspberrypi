@@ -22,8 +22,21 @@ class Detector():
         self.device = torch.device(device)
         self.half = half  # half = device.type != 'cpu'  # half precision only supported on CUDA
         self.trace = trace  # Convert model to Traced-model
-        self.num_log_level = getattr(logging, log_level.upper(), 20) ##Translate the log_level input string to one of the accepted values of the logging module, if no 20 - INFO
-        self.log_dir = log_dir
+        self.log_level = log_level
+        if self.log_level:
+            self.num_log_level = getattr(logging, self.log_level.upper(), 20) ##Translate the log_level input string to one of the accepted values of the logging module, if no 20 - INFO
+            self.log_dir = log_dir
+
+            log_formatter = logging.Formatter("%(asctime)s %(message)s")
+            logFile = self.log_dir + 'detection.log'
+            my_handler = RotatingFileHandler(logFile, mode='a', maxBytes=25 * 1024 * 1024,
+                                             backupCount=10, encoding='utf-8', delay=False)
+            my_handler.setFormatter(log_formatter)
+            my_handler.setLevel(self.num_log_level)
+            self.logger = logging.getLogger(__name__)  # logging.getLogger(__name__)  .getLogger('root')
+            self.logger.setLevel(self.num_log_level)
+            self.logger.addHandler(my_handler)
+
         # Add path to yolo model as whenever load('weights.pt') is called, pytorch looks for model config in path enviornment variable (models/yolo)
         yolo_folder_dir = str(Path(__file__).parent.absolute()) +"\yolov7" #  models folder path
         sys.path.insert(0, yolo_folder_dir)
@@ -36,7 +49,6 @@ class Detector():
         # Convert model to Traced-model
         if self.trace:
             self.model = TracedModel(self.model, self.device, self.img_size)
-
         # if half:
         #     model.half()  # to FP16
 
@@ -46,17 +58,6 @@ class Detector():
             self.colors = [[0, 255, 127]] + [[random.randint(0, 255) for _ in range(3)] for _ in self.names[1:]]
         else:
             self.colors = [[0, 255, 127]]
-
-
-        log_formatter = logging.Formatter("%(asctime)s %(message)s")
-        logFile = self.log_dir + 'detection.log'
-        my_handler = RotatingFileHandler(logFile, mode='a', maxBytes=25 * 1024 * 1024,
-                                         backupCount=10, encoding='utf-8', delay=False)
-        my_handler.setFormatter(log_formatter)
-        my_handler.setLevel(self.num_log_level)
-        self.logger = logging.getLogger(__name__)  # logging.getLogger(__name__)  .getLogger('root')
-        self.logger.setLevel(self.num_log_level)
-        self.logger.addHandler(my_handler)
 
         sys.path.remove(yolo_folder_dir)
 
@@ -100,15 +101,16 @@ class Detector():
                 f'{print_strng} detected. ({(1E3 * (t1 - t0)):.1f}ms)-Load data, ({(1E3 * (t2 - t1)):.1f}ms)-Inference, ({(1E3 * (t3 - t2)):.1f}ms)-NMS')
 
             # Write results to file if debug mode
-            self.logger.debug(
-                f'{self.file_name} {print_strng} detected. ({(1E3 * (t1 - t0)):.1f}ms)-Load data, ({(1E3 * (t2 - t1)):.1f}ms)-Inference, ({(1E3 * (t3 - t2)):.1f}ms)-NMS')
-            if self.logger.getEffectiveLevel() == 10:  # level 10 = debug
-                gn = torch.tensor(self.im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
-                for *xyxy, conf, cls in reversed(self.det):
-                    # save detections with bbox in xywh format
-                    xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
-                    line = (int(cls), np.round(conf, 3), *xywh)  # label format
-                    self.logger.debug(f"{self.file_name} {('%g ' * len(line)).rstrip() % line}")
+            if self.log_level:
+                self.logger.debug(
+                    f'{self.file_name} {print_strng} detected. ({(1E3 * (t1 - t0)):.1f}ms)-Load data, ({(1E3 * (t2 - t1)):.1f}ms)-Inference, ({(1E3 * (t3 - t2)):.1f}ms)-NMS')
+                if self.logger.getEffectiveLevel() == 10:  # level 10 = debug
+                    gn = torch.tensor(self.im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
+                    for *xyxy, conf, cls in reversed(self.det):
+                        # save detections with bbox in xywh format
+                        xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
+                        line = (int(cls), np.round(conf, 3), *xywh)  # label format
+                        self.logger.debug(f"{self.file_name} {('%g ' * len(line)).rstrip() % line}")
 
             # Find detection with max confidence:
             indx = self.pred[0].argmax(0)[

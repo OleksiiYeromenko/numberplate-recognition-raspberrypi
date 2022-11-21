@@ -51,15 +51,18 @@ def main(weights, img_size, det_conf_thres, log_level,cam_rotate_180, show_img, 
             if display_img:
                 visualizer.display()
 
+
+
+
 def dev_test(img_source, weights, img_size, det_conf_thres, log_level, cam_rotate_180, show_img, save_img, display_img):
 
     # Init
     detector = Detector(weights, log_level=log_level)
     ocr = EasyOcr(lang=['en'], allow_list='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', min_size=50, log_level=log_level)
     try:
-        allowed_list = read_allowed_numbers(sheet_id='1eVjmjribNgYRRcG9i6lcztRLdC8LiB9jgLc85BiOSbU')
+        allowed_numbers_list = read_allowed_numbers(sheet_id='1eVjmjribNgYRRcG9i6lcztRLdC8LiB9jgLc85BiOSbU')
     except:
-        allowed_list=[]
+        allowed_numbers_list=[]
 
     img = cv2.imread(img_source)
     # Run numberplate bbox detection:
@@ -67,7 +70,7 @@ def dev_test(img_source, weights, img_size, det_conf_thres, log_level, cam_rotat
     # Run ocr on detected number region:
     ocr_result = ocr.run(detect_result)
     # Check if detected number in allowed list (API, db, etc. request). Here for test - From excel sheet on Google drive
-    if ocr_result['text'] is not None and ocr_result['text'].lower() in allowed_list:
+    if ocr_result['text'] is not None and ocr_result['text'].lower() in allowed_numbers_list:
         num_check_response = 'Allowed'
     else:
         num_check_response = None
@@ -105,14 +108,14 @@ if __name__ == "__main__":
     opt = parser.parse_args()
 
     # Dev testing
-#     opt.show_img = True
-    opt.display_img = True
-    opt.cam_rotate_180 = True
+    opt.show_img = True
+    # opt.display_img = True
+    # opt.cam_rotate_180 = True
 
-#     dev_test(img_source='data/test/test1.jpg',weights=opt.weights, img_size=opt.img_size, det_conf_thres=opt.det_conf_thres, log_level=opt.log_level, cam_rotate_180 = opt.cam_rotate_180,
-#          show_img=opt.show_img, save_img=opt.save_img, display_img=opt.display_img)
+    dev_test(img_source='data/test/test1.jpg',weights=opt.weights, img_size=opt.img_size, det_conf_thres=opt.det_conf_thres, log_level=opt.log_level, cam_rotate_180 = opt.cam_rotate_180,
+         show_img=opt.show_img, save_img=opt.save_img, display_img=opt.display_img)
 
+    # #
+    # main(weights=opt.weights, img_size=opt.img_size, det_conf_thres=opt.det_conf_thres, log_level=opt.log_level, cam_rotate_180 = opt.cam_rotate_180, show_img=opt.show_img, save_img=opt.save_img, display_img=opt.display_img)
     #
-    main(weights=opt.weights, img_size=opt.img_size, det_conf_thres=opt.det_conf_thres, log_level=opt.log_level, cam_rotate_180 = opt.cam_rotate_180, show_img=opt.show_img, save_img=opt.save_img, display_img=opt.display_img)
-
-
+    #
