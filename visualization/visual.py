@@ -87,7 +87,7 @@ class Visualize():
         # Add number check response in allowed list
         if self.num_check_response == 'Allowed':
             label = "-=Allowed=-"
-            fontColor = (255,0,0)
+            fontColor = (0,255,0)
         else:
             label = "-=Prohibited!=-"
             fontColor = (0,0,255)
@@ -98,7 +98,7 @@ class Visualize():
         text_size = cv2.getTextSize(label, font, fontScale=fontScale, thickness=t_thickn)[0]
         w_center = int((im0_w + im0_offset + w) / 2)
         response_w_x1 = int(w_center - text_size[0] / 2)
-        response_h_y1 = int(h*4/7) #TBD
+        response_h_y1 = int(h*3/7) #TBD
         org = (response_w_x1, response_h_y1)  # position
         # Plot text on img
         cv2.putText(self.img, label, org, font, fontScale, color=fontColor, thickness=t_thickn, lineType=cv2.LINE_AA)
