@@ -4,6 +4,8 @@ import cv2
 import time
 import logging
 from logging.handlers import RotatingFileHandler
+from recognition.utils import ocr_img_preprocess
+
 
 class EasyOcr():
     def __init__(self, lang = ['en'], allow_list = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', min_size=50, log_level='INFO', log_dir = './logs/'):
@@ -31,7 +33,7 @@ class EasyOcr():
         if detect_result_dict['cropped_img'] is not None:
             t0 = time.time()
             img = detect_result_dict['cropped_img']
-            img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+            img = ocr_img_preprocess(img)
             file_name = detect_result_dict.get('file_name')
             ocr_result = self.reader.readtext(img, allowlist = self.allow_list, min_size=self.min_size)#, paragraph="True"
             text = [x[1] for x in ocr_result]
@@ -50,5 +52,12 @@ class EasyOcr():
 
 
 if __name__ == "__main__":
-    pass
-    #TBD - add test
+    ocr = EasyOcr(lang=['en'], allow_list='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', min_size=50, log_level=None)
+
+    img = cv2.imread('../data/test/plates/wp57yws.png')
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+    detect_result_dict ={'cropped_img': img}
+
+    res = ocr.run(detect_result_dict)
+    print(res)  #{'text': 'WP57YHS', 'confid': 0.44}

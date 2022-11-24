@@ -31,6 +31,9 @@ class Visualize():
         self.save_jpg_qual = save_jpg_qual
         self.log_dir = log_dir
         self.imgs_log_dir = self.log_dir + 'imgs/'
+        os.makedirs(os.path.dirname(self.imgs_log_dir), exist_ok=True)
+        self.crop_imgs_log_dir = self.log_dir + 'imgs/crop/'
+        os.makedirs(os.path.dirname(self.crop_imgs_log_dir), exist_ok=True)
         self.log_img_qnt_limit = log_img_qnt_limit
 
         # Create blank image
@@ -116,6 +119,17 @@ class Visualize():
         # Write compressed jpeg with results
         cv2.imwrite(f"{self.imgs_log_dir}{self.file_name}", self.img, [int(cv2.IMWRITE_JPEG_QUALITY), self.save_jpg_qual])
         # TBD Write in byte string format
+
+    def save_crop(self):
+        if self.cropped_img is not None:
+            # Remove oldest file if reach quantity limit
+            if self.get_dir_file_quantity(self.crop_imgs_log_dir) > self.log_img_qnt_limit:
+                oldest_file = sorted([self.crop_imgs_log_dir+f for f in os.listdir(self.crop_imgs_log_dir)])[
+                    0]  # , key=os.path.getctime
+                os.remove(oldest_file)
+            # Write compressed jpeg with results
+            cv2.imwrite(f"{self.crop_imgs_log_dir}crop_{self.file_name}", self.cropped_img)
+            # TBD Write in byte string format
 
     # Display img on e-ink display 176*264.
     def display(self):

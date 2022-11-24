@@ -1,5 +1,4 @@
 import sys
-
 sys.path.append('./detection/yolov7/')
 
 import argparse
@@ -21,6 +20,7 @@ def main(opt):
     cam_rotate_180 = opt.cam_rotate_180
     show_img = opt.show_img
     save_img = opt.save_img
+    save_crop = opt.save_crop
     display_img = opt.display_img
 
     # Init instances
@@ -41,7 +41,7 @@ def main(opt):
         else:
             num_check_response = None
 
-        if show_img or save_img or display_img:
+        if show_img or save_img or save_crop or display_img:
             visualizer = Visualize(im0=detect_result['orig_img'], file_name=detect_result['file_name'],
                                    cropped_img=detect_result['cropped_img'],
                                    bbox=detect_result['bbox'], det_conf=detect_result['det_conf'],
@@ -55,6 +55,8 @@ def main(opt):
                 cv2.destroyAllWindows()
             if save_img:
                 visualizer.save()
+            if save_crop:
+                visualizer.save_crop()
             if display_img:
                 visualizer.display()
 
@@ -74,7 +76,7 @@ def main(opt):
             else:
                 num_check_response = None
 
-            if show_img or save_img or display_img:
+            if show_img or save_img or save_crop or display_img:
                 visualizer = Visualize(im0=detect_result['orig_img'], file_name=detect_result['file_name'],
                                        cropped_img=detect_result['cropped_img'],
                                        bbox=detect_result['bbox'], det_conf=detect_result['det_conf'],
@@ -92,6 +94,8 @@ def main(opt):
                         continue
                 if save_img:
                     visualizer.save()
+                if save_crop:
+                    visualizer.save_crop()
                 if display_img:
                     visualizer.display()
 
@@ -107,6 +111,7 @@ if __name__ == "__main__":
     parser.add_argument('--cam-rotate-180', action='store_true', help='flip camera image 180')
     parser.add_argument('--show-img', action='store_true', help='display results')
     parser.add_argument('--save-img', action='store_true', help='save imgs to *.jpg')
+    parser.add_argument('--save-crop', action='store_true', help='save cropped imgs to *.jpg')
     parser.add_argument('--display-img', action='store_true', help='display imgs to e-ink')
     opt = parser.parse_args()
 
@@ -114,6 +119,8 @@ if __name__ == "__main__":
     opt.show_img = True
     # opt.display_img = True
     # opt.cam_rotate_180 = True
-    opt.img_source = 'data/test/test1.jpg'
+    # opt.img_source = 'data/test/test1.jpg'
+    opt.save_crop = True
+
 
     main(opt)
