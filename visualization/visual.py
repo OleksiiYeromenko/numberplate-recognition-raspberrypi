@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-
+import torch
 import sys
 import os
 libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib')
@@ -48,9 +48,21 @@ class Visualize():
             plot_one_box(self.bbox, self.im0, label=label, color=color, line_thickness=3)
 
         # Resize img width to fit the plot, keep origin aspect ratio
-        r = outp_orig_img_size / self.im0.shape[1]
-        dim = (outp_orig_img_size, int(self.im0.shape[0] * r))
-        self.im0 = cv2.resize(self.im0, dim, interpolation=cv2.INTER_AREA)
+
+
+        h0, w0 = im0.shape[:2]
+        aspect = w0 / h0
+        if aspect > 1:  # horizontal image
+            new_w = outp_orig_img_size
+            new_h = np.round(new_w / aspect).astype(int)
+        elif aspect < 1:  # vertical image
+            new_h = outp_orig_img_size
+            new_w = np.round(new_h * aspect).astype(int)
+        else:  # square image
+            new_h, new_w = outp_orig_img_size, outp_orig_img_size
+        # r = outp_orig_img_size / self.im0.shape[1]
+        # dim = (outp_orig_img_size, int(self.im0.shape[0] * r))
+        self.im0 = cv2.resize(self.im0, (new_w, new_h), interpolation=cv2.INTER_AREA)
         im0_h, im0_w = self.im0.shape[:2]
 
         # Add original full image
@@ -180,7 +192,41 @@ class Visualize():
 
         
     
-    
-    
+
+
+if __name__ == "__main__":
+
+    show_img =True
+    display_img = False
+    save_img = False
+    save_cropped = False
+
+    img = cv2.imread('../data/test/test1.jpg')
+    bbox = torch.tensor([459., 337., 703., 388.])
+    crop = cv2.imread('../data/test/plates/SN66XMZ.png')
+    det_conf = torch.tensor(0.91)
+    ocr_num = 'SN66XMZ'
+    ocr_conf = '0.99'
+    file_name = 'test.jpg'
+
+    if show_img or display_img or save_img or save_cropped:
+        visualizer = Visualize(im0=img, file_name=file_name,
+                               cropped_img=crop,
+                               bbox=bbox, det_conf=det_conf,
+                               ocr_num=ocr_num, ocr_conf=ocr_conf,
+                               num_check_response='Allowed',
+                               out_img_size=(720, 1280), outp_orig_img_size=720,
+                               save_jpg_qual=65, log_img_qnt_limit=10800)
+        if show_img:
+            visualizer.show()
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
+        if save_img:
+            visualizer.save()
+        if save_cropped:
+            visualizer.save_crop()
+        if display_img:
+            visualizer.display()
+
     
     

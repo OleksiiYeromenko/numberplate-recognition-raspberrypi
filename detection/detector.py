@@ -1,6 +1,7 @@
 from pathlib import Path
 import sys
 import torch
+import cv2
 import numpy as np
 from numpy import random
 import time
@@ -128,5 +129,26 @@ class Detector():
 
 
 if __name__ == "__main__":
-    pass
-    #TBD - add test
+    weights = '../detection/models/25ep_best.pt'
+    img = cv2.imread('../data/test/test1.jpg')
+    detector = Detector(weights, log_level=None)
+    detect_result = detector.run(img, conf_thres=0.35)
+
+    print(detect_result.get('file_name'))
+    img = detect_result.get('orig_img')
+    print(img.shape)
+    print(detect_result.get('cropped_img').shape)
+    bbox = detect_result.get('bbox')
+    print(bbox)
+    conf = detect_result.get('det_conf')
+    print(conf)
+
+    # plot img
+    if bbox is not None:
+        c1, c2 = (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3]))
+        color = [random.randint(0, 255) for _ in range(3)]
+        cv2.rectangle(img, c1, c2, color=color,thickness=3, lineType=cv2.LINE_AA)
+    if conf is not None:
+        cv2.putText(img, f'{conf.item():.2f}', (c1[0], c1[1] - 2), 0, 1, color, thickness=3, lineType=cv2.LINE_AA)
+    cv2.imshow('image', img)
+    cv2.waitKey()

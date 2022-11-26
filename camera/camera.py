@@ -20,46 +20,24 @@ class PiCamera():
         return image  # in BGR
 
 
-#
-# ####
-# cap.release()
-# cv2.destroyAllWindows()
-# ###
-#
-# import numpy as np
-# import cv2
-#
-# cap = cv2.VideoCapture('intro.mp4')
-# while (cap.isOpened()):
-#
-#     ret, frame = cap.read()
-#     # cv2.namedWindow("window", cv2.WND_PROP_FULLSCREEN)
-#     # cv2.setWindowProperty("window",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
-#
-#     if ret:
-#         cv2.imshow("Image", frame)
-#     else:
-#         print('no video')
-#         cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
-#         continue
-#
-#     if cv2.waitKey(1) & 0xFF == ord('q'):
-#         break
-#
-# cap.release()
-# cv2.destroyAllWindows()
-#
-#
-#
-#
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
-    pass
-    #TBD - add test
+    camera = PiCamera()
+
+    while True:
+        # Take a frame from camera
+        img = camera.run()
+        print(img.shape)
+
+        # Show the image
+        cv2.imshow('image', img)
+
+        # Press 'q' key to stop
+        key = cv2.waitKey(1) & 0xFF
+        if key == ord("q"):
+            cv2.destroyAllWindows()
+            break
+
+    camera.cap.release()
+    cv2.destroyAllWindows()
