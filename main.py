@@ -13,6 +13,7 @@ from validation.utils import read_allowed_numbers
 def main(opt):
     # Arguments
     img_source = opt.img_source
+    video_capture_source = opt.video_capture_source
     weights = opt.weights
     img_size = opt.img_size
     det_conf_thres = opt.det_conf_thres
@@ -62,8 +63,13 @@ def main(opt):
 
     # Case input is camera
     else:
-        camera = PiCamera(img_size=img_size, rotate_180=cam_rotate_180, fps=10)  #
+        camera = PiCamera(src=video_capture_source, img_size=img_size, rotate_180=cam_rotate_180, fps=1)  #
+        i=0
         while True:
+            print(f"######################### frame: {i}")
+            i+=1
+            
+            
             # Take a frame from camera
             img = camera.run()
             # Run numberplate bbox detection:
@@ -102,10 +108,10 @@ def main(opt):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--img-source', type=str, default=None, nargs='?', const='data/test/test1.jpg',
-                        help='run with image input, not camera')
-    parser.add_argument('--weights', type=str, default='detection/models/25ep_best.pt', help='model.pt path(s)')
-    parser.add_argument('--img-size', type=int, default=640, help='inference size (pixels)')
+    parser.add_argument('--img-source', type=str, default=None, help='run with image input, not camera')
+    parser.add_argument('--video_capture_source', type=str, default=None, help='path to videofile, None - Webcam')
+    parser.add_argument('--weights', type=str, default='detection/models/25ep_best.pt', help='inference size (pixels)')
+    parser.add_argument('--img-size', type=int, default=(1280,720), help='camera image size (pixels)')
     parser.add_argument('--det-conf-thres', type=float, default=0.25, help='object det confidence threshold')
     parser.add_argument('--log-level', type=str, choices=('INFO', 'DEBUG'), default='INFO', help='logging level')
     parser.add_argument('--cam-rotate-180', action='store_true', help='flip camera image 180')
@@ -117,10 +123,11 @@ if __name__ == "__main__":
 
     # Dev testing
     opt.show_img = True
-    # opt.display_img = True
-    # opt.cam_rotate_180 = True
-    opt.img_source = 'data/test/test1.jpg'
-    # opt.save_cropped = True
-
+#     opt.display_img = True
+    opt.cam_rotate_180 = True
+#     opt.img_source = 'data/test/test1.jpg'
+#     opt.save_cropped = True
+#     opt.video_capture_source = './data/test/videorec_28112022194352.mp4'
+    
 
     main(opt)

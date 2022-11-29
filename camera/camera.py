@@ -1,16 +1,24 @@
 import cv2
 
+
 class PiCamera():
-    def __init__(self, src=0, img_size=640, fps=36, rotate_180=False):
+    def __init__(self, src=None, img_size=(640,480), fps=36, rotate_180=False):
         self.img_size = img_size
         self.fps = fps
+        if src is None:
+            src = 0
         self.cap = cv2.VideoCapture(src)
-        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.img_size)
-        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.img_size)
+        
+        self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
         self.cap.set(cv2.CAP_PROP_FPS, self.fps)
+        
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.img_size[0])
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.img_size[1])
         self.rotate_180 = rotate_180
 
-    def run(self):
+
+
+    def run(self):       
         # read frame
         ret, image = self.cap.read()
         if self.rotate_180:
@@ -22,8 +30,9 @@ class PiCamera():
 
 
 
+
 if __name__ == "__main__":
-    camera = PiCamera()
+    camera = PiCamera(rotate_180=True)  #src='../data/test/videorec_28112022194352.mp4'
 
     while True:
         # Take a frame from camera
