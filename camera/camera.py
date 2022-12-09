@@ -1,4 +1,5 @@
 import cv2
+import time
 
 
 class PiCamera():
@@ -10,7 +11,7 @@ class PiCamera():
         self.cap = cv2.VideoCapture(src)
         
         self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
-        self.cap.set(cv2.CAP_PROP_FPS, self.fps)
+#         self.cap.set(cv2.CAP_PROP_FPS, self.fps)
         
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.img_size[0])
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.img_size[1])
@@ -33,20 +34,50 @@ class PiCamera():
 
 if __name__ == "__main__":
     camera = PiCamera(rotate_180=True)  #src='../data/test/videorec_28112022194352.mp4'
-
+    
+    # continually purging the camera's frame buffer to fix lag when processing old frame from buffer
+    frame_rate = 10
+    prev_time = 0
     while True:
-        # Take a frame from camera
+        time_elapsed = time.time() - prev_time
         img = camera.run()
-        print(img.shape)
 
-        # Show the image
-        cv2.imshow('image', img)
+        if time_elapsed > 1./frame_rate:
+            prev_time = time.time()
 
-        # Press 'q' key to stop
-        key = cv2.waitKey(1) & 0xFF
-        if key == ord("q"):
-            cv2.destroyAllWindows()
-            break
+
+            print(img.shape)
+
+            # Show the image
+            cv2.imshow('image', img)
+
+            # Press 'q' key to stop
+            key = cv2.waitKey(1) & 0xFF
+            if key == ord("q"):
+                cv2.destroyAllWindows()
+                break
 
     camera.cap.release()
     cv2.destroyAllWindows()
+
+
+
+
+        
+#         
+#     while True:
+#         # Take a frame from camera
+#         img = camera.run()
+#         print(img.shape)
+# 
+#         # Show the image
+#         cv2.imshow('image', img)
+# 
+#         # Press 'q' key to stop
+#         key = cv2.waitKey(1) & 0xFF
+#         if key == ord("q"):
+#             cv2.destroyAllWindows()
+#             break
+# 
+#     camera.cap.release()
+#     cv2.destroyAllWindows()

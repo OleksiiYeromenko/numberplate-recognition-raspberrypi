@@ -20,6 +20,7 @@ from visualization.utils import plot_one_box, check_imshow
 class Visualize():
     def __init__(self, im0, file_name, cropped_img=None, bbox=None, det_conf=None, ocr_num=None, ocr_conf=None, num_check_response=None, out_img_size=(720,1280), outp_orig_img_size = 640, log_dir ='./logs/', save_jpg_qual = 65, log_img_qnt_limit = 10800):
         self.im0 = im0
+        self.input_img = im0.copy()
         self.file_name = file_name
         self.cropped_img = cropped_img
         self.bbox = bbox
@@ -34,6 +35,8 @@ class Visualize():
         os.makedirs(os.path.dirname(self.imgs_log_dir), exist_ok=True)
         self.crop_imgs_log_dir = self.log_dir + 'imgs/crop/'
         os.makedirs(os.path.dirname(self.crop_imgs_log_dir), exist_ok=True)
+        self.orig_imgs_log_dir = self.log_dir + 'imgs/inp/'
+        os.makedirs(os.path.dirname(self.orig_imgs_log_dir), exist_ok=True)
         self.log_img_qnt_limit = log_img_qnt_limit
 
         # Create blank image
@@ -132,6 +135,17 @@ class Visualize():
         cv2.imwrite(f"{self.imgs_log_dir}{self.file_name}", self.img, [int(cv2.IMWRITE_JPEG_QUALITY), self.save_jpg_qual])
         # TBD Write in byte string format
 
+    def save_input(self):
+        if self.input_img is not None:
+            # Remove oldest file if reach quantity limit
+            if self.get_dir_file_quantity(self.orig_imgs_log_dir) > self.log_img_qnt_limit:
+                oldest_file = sorted([self.orig_imgs_log_dir+f for f in os.listdir(self.orig_imgs_log_dir)])[
+                    0]  # , key=os.path.getctime
+                os.remove(oldest_file)
+            # Write compressed jpeg with results
+            cv2.imwrite(f"{self.orig_imgs_log_dir}orig_inp_{self.file_name}", self.input_img)
+            # TBD Write in byte string format
+
     def save_crop(self):
         if self.cropped_img is not None:
             # Remove oldest file if reach quantity limit
@@ -198,8 +212,9 @@ if __name__ == "__main__":
 
     show_img =True
     display_img = False
-    save_img = False
-    save_cropped = False
+    save_img = True
+    save_cropped = True
+    save_inpu = True
 
     img = cv2.imread('../data/test/test1.jpg')
     bbox = torch.tensor([459., 337., 703., 388.])
@@ -225,6 +240,8 @@ if __name__ == "__main__":
             visualizer.save()
         if save_cropped:
             visualizer.save_crop()
+        if save_input:
+            visualizer.save_input()
         if display_img:
             visualizer.display()
 
