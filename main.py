@@ -4,6 +4,7 @@ sys.path.append('./detection/yolov7/')
 import argparse
 import cv2
 import time
+import threading
 from camera.camera import PiCamera
 from detection.detector import Detector
 from visualization.visual import Visualize
@@ -26,6 +27,9 @@ def main(opt):
     save_cropped = opt.save_cropped
     save_input  = opt.save_input
     display_img = opt.display_img
+    
+    action_status = [None]
+    lock = threading.Lock()
 
     # Init instances
     detector = Detector(weights, log_level=log_level)
@@ -34,8 +38,15 @@ def main(opt):
     try:
         #TBD
         barrier_action = Action()
+        # Start barrier action as a parallel thread
+        action_thread = threading.Thread(target=barrier_action.run, args=(action_status,))
+        action_thread.daemon = True
+        action_thread.start()
+        
     except:
-        print("No Lego Build HAT.")        
+        print("No Lego Build HAT.")
+    
+
 
     # Case input is image
     if img_source:
@@ -46,16 +57,22 @@ def main(opt):
         ocr_result = ocr.run(detect_result)
         # Check if detected number in allowed list (API, db, etc. request). Here for test - From excel sheet on Google drive
         if ocr_result['text'] is not None and ocr_result['text'].lower() in allowed_numbers_list:
-            num_check_response = 'Allowed'
+            with lock:
+                action_status[0] = 'Allowed'
+        elif ocr_result['text'] is not None:
+            with lock:
+                action_status[0] = "Prohibited"
         else:
-            num_check_response = None
+            with lock:
+                action_status[0] = None
+                
 
         if show_img or save_img or save_cropped or display_img:
             visualizer = Visualize(im0=detect_result['orig_img'], file_name=detect_result['file_name'],
                                    cropped_img=detect_result['cropped_img'],
                                    bbox=detect_result['bbox'], det_conf=detect_result['det_conf'],
                                    ocr_num=ocr_result['text'], ocr_conf=ocr_result['confid'],
-                                   num_check_response=num_check_response,
+                                   num_check_response=action_status[0],
                                    out_img_size=(720, 1280), outp_orig_img_size=720,
                                    save_jpg_qual=65, log_img_qnt_limit=10800)
             if show_img:
@@ -70,13 +87,13 @@ def main(opt):
                 visualizer.save_input()
             if display_img:
                 visualizer.display()
-            
-        if ocr_result['text'] is not None:
-            try:
-                #TBD
-                barrier_action.run(num_check_response)
-            except:
-                print("No Lego Build HAT.")
+#             
+#         if ocr_result['text'] is not None:
+#             try:
+#                 #TBD
+#                 barrier_action.run(action_status)
+#             except:
+#                 print("No Lego Build HAT.")
 
     # Case input is camera
     else:
@@ -90,7 +107,7 @@ def main(opt):
             print(f"######################### frame: {i}")
             # 
             time_elapsed = time.time() - prev_time
-            print(f"time_elapsed:{time_elapsed}")
+#             print(f"time_elapsed:{time_elapsed}")
             # Take a frame from camera
             img = camera.run()
             # Check that we are processing only frame with desired rate
@@ -102,16 +119,20 @@ def main(opt):
                 ocr_result = ocr.run(detect_result)
                 # Check if detected number in allowed list (API, db, etc. request). Here for test - From excel sheet on Google drive
                 if ocr_result['text'] is not None and ocr_result['text'].lower() in allowed_numbers_list:
-                    num_check_response = 'Allowed'
+                    with lock:
+                        action_status[0] = 'Allowed'
+                elif ocr_result['text'] is not None:
+                    with lock:
+                        action_status[0] = "Prohibited"
                 else:
-                    num_check_response = None
-
+                    with lock:
+                        action_status[0] = None
                 if show_img or save_img or save_cropped or display_img:
                     visualizer = Visualize(im0=detect_result['orig_img'], file_name=detect_result['file_name'],
                                            cropped_img=detect_result['cropped_img'],
                                            bbox=detect_result['bbox'], det_conf=detect_result['det_conf'],
                                            ocr_num=ocr_result['text'], ocr_conf=ocr_result['confid'],
-                                           num_check_response=num_check_response,
+                                           num_check_response=action_status[0],
                                            out_img_size=(720, 1280), outp_orig_img_size=720,
                                            save_jpg_qual=65, log_img_qnt_limit=10800)
                     if show_img:
@@ -130,13 +151,14 @@ def main(opt):
                         visualizer.save_input()
                     if display_img:
                         visualizer.display()
-                    
-                if ocr_result['text'] is not None:               
-                    try:
-                        #TBD
-                        barrier_action.run(num_check_response)
-                    except:
-                        print("No Lego Build HAT.")
+#                     
+#                 if ocr_result['text'] is not None:               
+#                     try:
+#                         #TBD
+#                         barrier_action.run(action_status)
+#                     except:
+#                         print("No Lego Build HAT.")
+
 
 
 if __name__ == "__main__":
